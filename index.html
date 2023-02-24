@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="post.css">
+<script src="./post.js"></script>
+
+
+</head>
+<body>
+   <div class="container">
+
+        <h1 class="text-center text-dark m-5"><b>Trending Technologies 2023</b></h1>
+
+             <div class="row">
+
+        <div class="col-sm">
+            
+
+    <div class="card m-3" style="width: 18rem;">
+        <img src="https://www.eweek.com/wp-content/uploads/2022/05/enterprise-AI.jpg " class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Artificial Intelligence</h5>
+          <div class="card-text" id="para">   </div>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm">
+
+
+      <div class="card m-3" style="width: 18rem;">
+          <img src="https://physicsworld.com/wp-content/uploads/2022/08/quantum-computer-1571871052-Shutterstock_Bartlomiej-K-Wroblewski.jpg " class="card-img-top " alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Quantum Computing</h5>
+            <div class="card-text" id="para1"></div>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+  
+      </div>
+
+
+      <div class="col-sm">
+
+
+        <div class="card m-3" style="width: 18rem;">
+            <img src=" https://bsmedia.business-standard.com/_media/bs/img/about-page/thumb/464_464/1611107541.jpg " class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Blockchain</h5>
+              <div  class="card-text" id="para2"></div> 
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+    
+        </div>
+    
+
+    </div>  
+    
+</div> 
+     
+</body>
+
+<script>
+
+var request =new XMLHttpRequest()
+request.open('get',' https://jsonplaceholder.typicode.com/posts ')
+request.send()
+
+request.onreadystatechange=()=>{
+            if(request.readyState==4){ //   readystate=4 means that request is send // after sending request check status code
+
+                // checking status belong to this range
+                if(request.status>199 && request.status< 300) {  //lies in between 200 range to obtain result status code successfully
+                 console.log(request.responseText);//  json data if we execute only this(request) in console we get xmlhttp  request object ,but actual data present in responsetext : contain  data we need so extract that data from there, use responsetext along with request to display that data in console 
+                
+
+
+                 let posts=JSON.parse(request.responseText);  
+       console.log(posts);// console todos to know format of converted data array of data
+       displayData(posts);//function call
+
+                }
+            }
+
+}
+
+function displayData(posts) {
+
+htmlData=''; //to  pass data empty htmldata
+ 
+for(let post of posts) //take one by one data from array 
+{
+    //how to dispaly data inside html  // we want userid in todo only so give todo.userid
+    htmlData= `  
+    
+    <p> ${post.body}  </p>
+
+     `  
+    para.innerHTML= htmlData      //here '+' ios given to obtain complete  more (kure) data' 
+    para1.innerHTML= htmlData  
+    para2.innerHTML= htmlData  
+    
+             // how to display array of data in html  varunna data  table inside data aayitt poovanam
+}
+
+
+}
+
+</script>
+
+
+</html>
